@@ -1,0 +1,5 @@
+{
+  "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js": { "integrity": "sha512-MiGPjhVbL4aJQjinnjzKzLRmluruxGc0eo1zV6WvmoedtjSCcK77py8C4JR8UbqB7noTK4hqT+0tsAlJf3x+5w==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdnjs.cloudflare.com/ajax/libs/marked/11.0.0/lib/marked.esm.js": { "integrity": "sha512-MiGPjhVbL4aJQjinnjzKzLRmluruxGc0eo1zV6WvmoedtjSCcK77py8C4JR8UbqB7noTK4hqT+0tsAlJf3x+5w==", "contentType": "application/javascript; charset=utf-8" },
+  "version": 1
+}

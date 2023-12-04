@@ -3,4 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-module.exports = nextConfig
+module.exports = {
+  nextConfig,
+  experimental: {
+    urlImports: ["https://cdnjs.cloudflare.com/ajax/libs/marked/11.0.0/lib/marked.esm.js"]
+  },
+}
