@@ -81,7 +81,8 @@ export default function Home() {
 
   return (
     <main>
-      <script defer src='https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js'/>
+      {/* This is the test script used by freeCodeCamp for evaluation */}
+      {/* <script defer src='https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js'/> */}
 
       <h1 className="title">Markdown Preview Editor </h1>
       <div className="container">
