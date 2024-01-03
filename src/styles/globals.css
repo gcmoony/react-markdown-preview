@@ -17,10 +17,11 @@ h1:is(.title) {
 }
 
 h2:is(.title) {
-  text-align: center;
+  text-align: left;
   margin: 0;
   padding: .4em;
-  color: #d4d4d4
+  color: #d4d4d4;
+  background-color: rgb(69, 69, 91);
 }
 
 .container {
@@ -49,10 +50,26 @@ h2:is(.title) {
   gap: 0;
   padding: 0;
   max-height: 80vh;
-  background-color: rgb(69, 69, 91);
+  
+  background-color: rgb(33, 33, 53);
   border-radius: 1rem;
   overflow-y: hidden;
   min-height: 40ch;
+}
+
+.reset {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  color: rgb(146, 153, 151);
+  font-size: large;
+  
+}
+
+.reset:hover {
+  cursor: pointer;
+  background-color: #232323;
+  border-radius: 10px;
 }
 
 #preview, #editor {
@@ -71,6 +88,10 @@ h2:is(.title) {
   color: rgb(212, 212, 212);  
 }
 
+#editor:focus {
+  outline: none;
+}
+
 #preview {
   padding: 1em;
   color: white;
@@ -85,19 +106,21 @@ h2:is(.title) {
 }
 
 .attribute > span {
-  background-color: rgb(102, 102, 102);
+  
   padding: 1rem;
   border-radius: 1rem;
-  color: rgba(0, 0, 0, 0.346);
+  color: rgba(215, 215, 215, 0.532);
   font-weight: 600;
 }
 
 .attribute a {
-  color: rgb(50, 50, 50);
+  
+  color: rgba(215, 215, 215, 0.532);
   text-decoration: none;
 }
 
 .attribute a:hover {
+  color: rgba(255, 255, 255, 0.841);
   text-decoration: underline;
 }
 
@@ -130,12 +153,7 @@ a {
   color: dodgerblue;
 }
 
-
-h1:not(.title), h2:not(.title) {
-  border-bottom: white 2px solid;
-}
-
 blockquote {
-  border-left: #232323 solid 2px;
+  border-left: #cea54c solid 2px;
   padding-left: 1em;
 }
