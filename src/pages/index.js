@@ -1,7 +1,9 @@
 import { marked } from "https://cdnjs.cloudflare.com/ajax/libs/marked/11.0.0/lib/marked.esm.js";
-import {  useState } from 'react'
+import {  useEffect, useState } from 'react'
+import * as DOMPurify from 'dompurify';
 // import { hljs } from 'highlight.js'
 import 'highlight.js/styles/github.css';
+import { HtmlContext } from "next/dist/shared/lib/html-context.shared-runtime";
 
 // hljs.registerLanguage('javascript', javascript);
 const hljs = require('highlight.js/lib/common');
@@ -64,19 +66,44 @@ Last but not least, embedded pictures work too!
 ![Abstract Dogs](https://raw.githubusercontent.com/gcmoony/react-markdown-preview/master/public/dawgs.png)
 `
 export default function Home() {
-  const [mdInput, setMdInput] = useState(sampleText);  
+  const [mdInput, setMdInput] = useState(sampleText);
+  
+  useEffect(() => {
+    const showPreview = setTimeout(() => {
+      resetOutput();
+    }, 1000);
+
+    return () => {
+      clearTimeout(showPreview);
+    }
+  }, [])
 
   function handleInputChange(event) {
     setMdInput(event.target.value);
     updateOutput(event);
-    document.querySelectorAll('code').forEach(e => {
-      hljs.highlightElement(e);
-    })
+    
   }
   
   function updateOutput(event) {
     let preview = document.getElementById("preview");
-    preview.innerHTML = marked(event.target.value);
+    
+    preview.innerHTML = DOMPurify.sanitize(marked(event.target.value));
+    parseCode();
+  }
+
+  function parseCode() {
+    document.querySelectorAll('code').forEach(e => {
+      hljs.highlightElement(e);
+    })
+  }
+
+  function resetOutput() {
+    setMdInput(s => s = sampleText);
+    let editor = document.getElementById("editor");
+    let preview = document.getElementById("preview");
+    preview.innerHTML = marked(sampleText);
+    editor.value = sampleText;
+    parseCode();
   }
 
   return (
@@ -86,13 +113,13 @@ export default function Home() {
 
       <h1 className="title">Markdown Preview Editor </h1>
       <div className="container">
-        <Container style={"container inside"}  title={"Editor"}>
+        <Container style={"container inside"}  title={"Markdown"} reset={<button className="reset" onClick={resetOutput}>&#x21A9;</button>}>
           <textarea id='editor' placeholder='Some text here' autoFocus onChange={handleInputChange} defaultValue={mdInput}/>
         </Container>
 
         <Container style={"container inside"} title={"Preview"}>
-          <div id='preview' className='' dangerouslySetInnerHTML={{__html: marked(mdInput)}}></div>
-          
+          {/* <div id='preview' className='' dangerouslySetInnerHTML={{__html: marked(mdInput)}}></div> */}
+          <div id='preview' className='' ></div>
         </Container>
       </div>
 
@@ -103,10 +130,10 @@ export default function Home() {
   )
 }
 
-function Container({children, title, style}) {
+function Container({children, title, style, reset}) {
   return (
     <div className={style}>
-      <h2 className="title">{title}</h2>
+      <h2 className="title">{title} {reset ? reset : <></>}</h2>
       {children}
     </div>
   )
