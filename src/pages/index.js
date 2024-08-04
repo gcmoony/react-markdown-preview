@@ -118,7 +118,7 @@ export default function Home() {
         </Container>
 
         <Container style={"container inside"} title={"Preview"}>
-          {/* <div id='preview' className='' dangerouslySetInnerHTML={{__html: marked(mdInput)}}></div> */}
+          
           <div id='preview' className='' ></div>
         </Container>
       </div>
